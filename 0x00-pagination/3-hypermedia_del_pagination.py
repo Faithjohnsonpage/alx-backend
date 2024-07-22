@@ -5,7 +5,7 @@ Deletion-resilient hypermedia pagination
 
 import csv
 import math
-from typing import List, Dict, Any
+from typing import List, Dict
 
 
 class Server:
@@ -44,6 +44,9 @@ class Server:
                         ) -> Dict:
         """Return a dictionary with pagination information that is
         deletion-resilient."""
+        if index is None:
+            index = 0
+
         assert isinstance(index, int) and index >= 0
         assert isinstance(page_size, int) and page_size > 0
 
