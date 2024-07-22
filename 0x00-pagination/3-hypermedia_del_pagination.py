@@ -41,7 +41,7 @@ class Server:
 
     def get_hyper_index(self, index: int = 0,
                         page_size: int = 10
-                        ) -> Dict[str, Any]:
+                        ) -> Dict:
         """Return a dictionary with pagination information that is
         deletion-resilient."""
         assert isinstance(index, int) and index >= 0
