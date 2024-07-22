@@ -54,16 +54,15 @@ class Server:
         total_items = len(dataset)
         assert index < total_items
 
-        data = []
-        next_index = index
-        count = 0
+        data = []  # collect all indexed data
+        next_index = index + page_size
 
-        while count < page_size and next_index < total_items:
-            item = dataset.get(next_index)
-            if item is not None:
-                data.append(item)
-                count += 1
-            next_index += 1
+        for value in range(index, next_index):
+            if self.indexed_dataset().get(value):
+                data.append(self.indexed_dataset()[value])
+            else:
+                value += 1
+                next_index += 1
 
         return {
             'index': index,
